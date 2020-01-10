@@ -16,7 +16,7 @@ echo cliente.getTemperatura365()
 echo cliente.getAlertas365()
 ```
 
-**Returns** Return data type is JSON.
+Return data type is JSON.
 
 ```json
 {
@@ -47,8 +47,11 @@ $ tsmnar licensia
 $ tsmnar ayuda
 ```
 
-
+- All units are Metric.
+- Functions return JSON.
 - Functions wont need arguments.
+- Temperature is Celsius.
+- `"velocidad"` is Wind Speed, `"direccion"` is Wind Direction.
 - It is not documented when the data for current day becomes available, if you get errors use `fecha = now() - 1.days` for yesterdays data.
 - At the time of writing some API endpoints wont work, then are not implemented on the code.
 
