@@ -1,6 +1,6 @@
 # SMNAR
 
-- [Servicio Meteorologico Nacional Argentina](https://www.smn.gob.ar) API Client.
+- [Servicio Meteorologico Nacional Argentina](https://www.smn.gob.ar) API Client and basic command line App.
 
 
 # Use
