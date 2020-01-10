@@ -1,7 +1,7 @@
 import times, strutils, httpclient, os, parsecsv, json, zip/zipfiles
 
 type
-  Smnar* = HttpClient ## Servicio Meteorologico Nacional Argentina API Client http://smn.gob.ar
+  Smnar* = HttpClient ## Servicio Meteorologico Nacional Argentina API Client https://www.smn.gob.ar
   SmnarEndpoints* = enum  ## Servicio Meteorologico Nacional Argentina API Endpoints. NO FUNCIONAN Pron5D y DatoHorario???.
     TiePre = "tiepre", Pron5D = "pron5d", RadSolar = "radsolar", Estaciones = "estaciones", DatoHorario = "datohorario", RegTemp = "regtemp", Alertas = "alertas"
 
