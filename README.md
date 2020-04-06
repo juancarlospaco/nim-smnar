@@ -56,6 +56,11 @@ $ tsmnar ayuda
 - At the time of writing some API endpoints wont work, then are not implemented on the code.
 
 
+# Documentation
+
+- https://juancarlospaco.github.io/nim-smnar
+
+
 # SSL
 
 - Compile with `-d:ssl` to use HTTPS and SSL.
