@@ -1,4 +1,5 @@
 import times, strutils, httpclient, os, parsecsv, json, zip/zipfiles
+when not defined(ssl): {.fatal: "Compila con '-d:ssl'".}
 
 type
   Smnar* = HttpClient ## Servicio Meteorologico Nacional Argentina API Client https://www.smn.gob.ar
@@ -14,6 +15,7 @@ template getLink*(this: Smnar, endpoint: SmnarEndpoints): string =
   "https://ssl.smn.gob.ar/dpd/zipopendata.php?dato=" & $endpoint
 
 proc downloadFile*(this: Smnar, path: string, endpoint: SmnarEndpoints, unzip = true): string =
+  assert path.len > 0, "path no puede ser un string vacio"
   result = path / $endpoint & ".zip"
   let client = newHttpClient()
   client.downloadFile(this.getLink(endpoint), result)
@@ -51,12 +53,12 @@ proc getEstaciones*(this: Smnar): string =
   if not existsFile(f): echo this.downloadFile(getTempDir(), Estaciones)
   result = readFile(f).normalize.strip
 
-proc getRadiacionSolar*(this: Smnar, fecha = now()): seq[JsonNode] =
+proc getRadiacionSolar*(this: Smnar, fecha = now() - 1.days): seq[JsonNode] =
   let f = getTempDir() / "radiacion_solar" & format(fecha, "yyyyMMdd") & ".txt"
   if not existsFile(f): echo this.downloadFile(getTempDir(), RadSolar)
   var parser: CsvParser
   parser.open(f, skipInitialSpace = true)
-  var counter: byte
+  var counter: Natural
   parser.readHeaderRow()
   while parser.readRow():
     result.add %*{
@@ -92,16 +94,17 @@ proc getAlertas365*(this: Smnar): seq[string] =
   readFile(f).normalize.strip.split("-----------------------------------------------------------------------------------")
 
 when isMainModule:
+  if paramCount() == 0: quit("Error, use:\n\ttsmnar ayuda")
   case paramStr(1).normalize.replace("-", "")
-  of "licensia", "licence": quit("MIT", 0)
-  of "estaciones": quit($Smnar().getEstaciones(), 0)
-  of "radiacion":
+  of "licensia", "licence":    quit("MIT", 0)
+  of "estaciones", "stations": quit($Smnar().getEstaciones(), 0)
+  of "radiacion", "radiation":
     for item in Smnar().getRadiacionSolar(): echo item.pretty
-  of "temperaturas365", "temperatura365":
+  of "temperaturas365", "temperatura365", "temperature365":
     for item in Smnar().getTemperatura365(): echo item.pretty
-  of "alertas365", "alerta365":
+  of "alertas365", "alerta365", "alerts365":
     for item in Smnar().getAlertas365(): echo item
-  of "actual", "estadoactual":
+  of "actual", "estadoactual", "currentstate":
     for item in Smnar().getEstadoActual(): echo item.pretty
   of "ayuda", "help":
     echo "\tsmnar actual\n\tsmnar alerta365\n\tsmnar temperatura365\n\tsmnar radiacion\n\tsmnar estaciones\n\tsmnar licensia\n"
