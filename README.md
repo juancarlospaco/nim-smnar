@@ -2,6 +2,8 @@
 
 - [Servicio Meteorologico Nacional Argentina](https://www.smn.gob.ar) API Client and basic command line App.
 
+![](0.png)
+
 
 # Use
 
@@ -47,7 +49,7 @@ $ tsmnar licensia
 $ tsmnar ayuda
 ```
 
-- All units are Metric.
+- All units are Metric. ~`111` Lines of code.
 - Functions return JSON.
 - Functions wont need arguments.
 - Temperature is Celsius.
