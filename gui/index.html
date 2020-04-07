@@ -1,0 +1,33 @@
+<h1>Servicio Meteorologico Nacional de Argentina</h1>
+
+<fieldset>
+  <legend>Radiacion Solar</legend>
+  <label>JSON
+  <textarea id="radiacion"></textarea>
+  </label>
+  <button onclick="api.getRadiacionSolar()">Actualizar</button>
+</fieldset>
+
+<fieldset>
+  <legend>Estado Actual</legend>
+  <label>JSON
+  <textarea id="estado"></textarea>
+  </label>
+  <button onclick="api.getEstadoActual()">Actualizar</button>
+</fieldset>
+
+<fieldset>
+  <legend>Temperaturas</legend>
+  <label>JSON
+  <textarea id="temperatura"></textarea>
+  </label>
+  <button onclick="api.getTemperatura365()">Actualizar</button>
+</fieldset>
+
+<fieldset>
+  <legend>Alertas</legend>
+  <label>JSON
+  <textarea id="alertas"></textarea>
+  </label>
+  <button onclick="api.getAlertas365()">Actualizar</button>
+</fieldset>
