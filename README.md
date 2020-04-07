@@ -1,8 +1,8 @@
 # SMNAR
 
-- [Servicio Meteorologico Nacional Argentina](https://www.smn.gob.ar) API Client and basic command line App.
+- [Servicio Meteorologico Nacional Argentina](https://www.smn.gob.ar) API Client & GUI App, [powered by Nim](https://nim-lang.org)
 
-![](0.png)
+![](https://raw.githubusercontent.com/juancarlospaco/nim-smnar/master/0.png "Servicio Meteorologico Nacional Argentina GUI App")
 
 
 # Use
